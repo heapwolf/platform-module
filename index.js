@@ -1,19 +1,11 @@
-(function() {
 
-  var name = 'foobar'; // name of the export.
+;((typeof module !== 'undefined' && function(m) { module.exports = m[1]; }) ||
+  (typeof define === 'function' && function(m) { define(name(m[0]), function() { return m[1] }); }) ||
+  (function(m) { window[m[0]] = m[1]; })
+)(function(m) { var name = /^function\s*(.*?)\s*\(/; return [name.exec(m.toString())[1], m]; }(
 
-  (
-    (typeof module !== 'undefined' && function (module) { module.exports = module(); }) ||
-    (typeof define === 'function' && function (module) { define(name, module); }) ||
-    (function (module) { window[name] = module(); })
+  function foo() {
+    console.log('x')
+  }
 
-  )(function () {
-
-    var foobar = function(arg1, arg2, etc) {
-      // code...
-    };
-
-    return foobar;
-  });
-
-}());
+));
